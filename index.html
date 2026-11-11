@@ -3,12 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ma souris et moi – 6 jeux pour apprivoiser la souris</title>
+<title>Ma souris et moi – 8 activités pour apprivoiser la souris</title>
 <style>
-:root{--ink:#12263f;--muted:#44566d;--bg:#fff6e6;--card:#fff;--line:#e3d3b5;--orange:#e8590c;--orange-d:#b94a08;--teal:#0e8f8f;--blue:#2b6fd6;--pink:#d6336c;--purple:#7a4fd1;--green:#1f8a4c;--yellow:#f5b800;--target:110px}
-html[data-size="L"]{--target:150px}
-html[data-size="M"]{--target:110px}
-html[data-size="S"]{--target:80px}
+:root{--ink:#12263f;--muted:#44566d;--bg:#fff6e6;--card:#fff;--line:#e3d3b5;--orange:#e8590c;--orange-d:#b94a08;--teal:#0e8f8f;--blue:#2b6fd6;--pink:#d6336c;--purple:#7a4fd1;--green:#1f8a4c;--yellow:#f5b800;--target:135px}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 body{font:20px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
@@ -16,21 +13,23 @@ body{font:20px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;c
 button{font:inherit;color:inherit}
 :focus-visible{outline:4px solid var(--blue);outline-offset:3px}
 
-.btn{min-height:52px;padding:8px 20px;border-radius:14px;border:3px solid var(--ink);background:#fff;font-weight:700;cursor:pointer}
+.btn{white-space:nowrap;min-height:52px;padding:8px 20px;border-radius:14px;border:3px solid var(--ink);background:#fff;font-weight:700;cursor:pointer}
 .btn:hover{background:#ffe8c9}
 .btn.primary{background:var(--orange-d);border-color:#7d3205;color:#fff}
 .btn.primary:hover{background:#9c3d05}
+.btn.small{min-height:44px;padding:4px 14px;font-size:18px}
 .seg{display:inline-flex;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:#fff}
-.seg button{border:0;background:#fff;padding:8px 18px;min-height:48px;font-weight:700;cursor:pointer}
+.seg button{border:0;background:#fff;padding:8px 16px;min-height:48px;font-weight:700;cursor:pointer}
 .seg button+button{border-left:3px solid var(--ink)}
 .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.input{font:inherit;min-height:48px;padding:6px 14px;border:3px solid var(--ink);border-radius:14px;width:230px;background:#fff}
 
 /* Accueil */
-#home{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+#home,#bilan{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
 .hero{display:flex;gap:24px;align-items:center}
 .hero h1{font-size:clamp(34px,5vw,54px);margin:0 0 6px;line-height:1.1}
 .hero p{margin:0;font-size:24px;color:var(--muted);max-width:660px}
-.settings{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;background:#fff;border:3px solid var(--line);border-radius:18px;padding:14px 18px;margin:22px 0 26px}
+.settings{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;background:#fff;border:3px solid var(--line);border-radius:18px;padding:14px 18px;margin:22px 0 26px}
 .settings .lbl{font-weight:700}
 .cards{display:grid;gap:16px}
 .card{display:grid;grid-template-columns:52px 70px 1fr auto;align-items:center;gap:16px;text-align:left;background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:16px 20px;cursor:pointer;box-shadow:0 5px 0 var(--ink);transition:transform .08s}
@@ -50,6 +49,14 @@ button{font:inherit;color:inherit}
 .coach li{margin:5px 0}
 .foot{margin-top:26px;color:var(--muted);font-size:16px;text-align:center}
 
+/* Bilan */
+#bilan h1{margin:0 0 4px;font-size:40px}
+#bilan table{width:100%;border-collapse:collapse;background:#fff;border:3px solid var(--ink);margin:18px 0}
+#bilan th,#bilan td{padding:10px 12px;border-bottom:2px solid var(--line);text-align:left;font-size:18px;vertical-align:top}
+#bilan th{background:#ffe8c9}
+#bilan .note{color:var(--muted);font-size:18px}
+#bilan .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+
 /* Écran de jeu */
 #play{display:flex;flex-direction:column;height:100vh;height:100dvh}
 .bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:12px 16px}
@@ -60,12 +67,14 @@ button{font:inherit;color:inherit}
 .progbar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
 .consigne{display:flex;gap:16px;align-items:center;margin:0 16px 12px;padding:8px 18px;background:#fff;border:3px solid var(--ink);border-radius:18px}
 .consigne p{margin:0;font-size:25px;font-weight:700;line-height:1.25}
+.consigne .acts{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 #stage{position:relative;flex:1;min-height:380px;margin:0 16px 16px;border-radius:24px;border:4px solid var(--ink);overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;
  background:#fffdf8 radial-gradient(circle,#eadfca 2px,transparent 2.5px) 0 0/34px 34px}
 
 .target{position:absolute;display:grid;place-items:center;cursor:pointer;animation:pop .28s ease-out}
 .dot{width:var(--target);height:var(--target);border-radius:50%;border:4px solid rgba(0,0,0,.18);box-shadow:0 6px 0 rgba(0,0,0,.18)}
 .rbtn{background:var(--blue)}
+.rbtn svg{width:calc(var(--target)*.42);height:auto}
 .folder{width:calc(var(--target)*1.3);text-align:center;padding:6px;border-radius:12px;border:2px solid transparent}
 .folder .ic{font-size:calc(var(--target)*.8);line-height:1.1}
 .folder .lb{display:inline-block;padding:1px 10px;border-radius:6px;font-weight:600;font-size:22px}
@@ -80,9 +89,13 @@ button{font:inherit;color:inherit}
 .basket .sym{font-size:calc(var(--target)*.42);line-height:1}
 .basket small{font-size:20px;font-weight:800;color:var(--ink)}
 .basket.hover{transform:scale(1.05);background:#fff3d6;border-style:solid}
-.ctxmenu{position:absolute;z-index:5;background:#fff;border:1px solid #8a97a8;border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.28);padding:6px;min-width:210px;font-size:21px;pointer-events:none;animation:pop .15s ease-out}
+.ctxmenu{position:absolute;z-index:5;background:#fff;border:1px solid #8a97a8;border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.28);padding:6px;min-width:210px;font-size:21px;pointer-events:none;animation:pop .15s ease-out;color:var(--ink)}
 .ctxmenu div{padding:8px 14px;border-radius:8px}
 .ctxmenu div:first-child{background:#dce9fd}
+.ctxmenu.live{pointer-events:auto;z-index:30}
+.ctxmenu.live div{cursor:pointer}
+.ctxmenu.live div:first-child{background:none}
+.ctxmenu.live div:hover{background:#dce9fd}
 .road{fill:none;stroke:#e6d6b8;stroke-linecap:round;stroke-linejoin:round}
 .guide{fill:none;stroke:#fff;stroke-width:6;stroke-dasharray:2 18;stroke-linecap:round}
 .prog-path{fill:none;stroke:var(--teal);stroke-linecap:round;stroke-linejoin:round}
@@ -92,6 +105,50 @@ button{font:inherit;color:inherit}
 .mk-end{fill:var(--pink);stroke:#fff;stroke-width:5}
 .mk-txt{font-weight:800;font-size:26px;fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:#fffdf8;stroke-width:7px}
 .mk-flag{font-size:38px;text-anchor:middle;dominant-baseline:central}
+
+/* Échauffement guidé */
+#stage.guided{background:#fffdf8}
+.pgrid{position:absolute;inset:0;display:grid;grid-template-columns:minmax(220px,42%) 1fr;gap:24px;padding:46px 24px 20px;align-items:center}
+.pill{display:grid;place-items:center;height:100%;min-height:0}
+.pill svg{max-width:100%;max-height:100%}
+.ptext h3{margin:0 0 8px;font-size:32px}
+.ptext p{font-size:24px;margin:0 0 16px}
+.sdots{position:absolute;top:12px;left:0;right:0;display:flex;gap:10px;justify-content:center}
+.sdots i{width:18px;height:18px;border-radius:50%;background:#e3d3b5;border:3px solid var(--ink)}
+.sdots i.act{background:var(--yellow)}
+.sdots i.done{background:var(--green)}
+.chips{display:flex;gap:12px;flex-wrap:wrap}
+.chip{padding:8px 18px;border:3px solid var(--ink);border-radius:999px;font-weight:800;background:#fff}
+.chip.ok{background:#e1f5e8;border-color:var(--green);color:#116a36}
+.okmark{display:inline-block;padding:10px 20px;border-radius:14px;background:#e1f5e8;border:3px solid var(--green);color:#116a36;font-weight:800;font-size:26px;animation:pop .25s}
+.halo{position:absolute;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;border:8px solid var(--orange);background:rgba(232,89,12,.15);pointer-events:none;animation:haloP 1s ease-in-out infinite;z-index:8}
+.shakehint{font-size:110px;font-weight:800;color:var(--orange);animation:wiggle2 .9s ease-in-out infinite}
+.lift-mouse{animation:liftm 4.5s ease-in-out infinite}
+@keyframes liftm{0%{transform:translate(40px,0)}35%{transform:translate(190px,0)}45%{transform:translate(190px,-34px)}70%{transform:translate(40px,-34px)}80%{transform:translate(40px,0)}100%{transform:translate(40px,0)}}
+@keyframes haloP{50%{transform:scale(1.25)}}
+@keyframes wiggle2{50%{transform:translateX(24px)}}
+
+/* Bureau (synthèse) */
+#stage.desk{background:linear-gradient(135deg,#2b6fd6,#7a4fd1 55%,#d6336c)}
+.dicon{position:absolute;width:calc(var(--target)*1.15);text-align:center;color:#fff;padding:6px 4px;border-radius:10px;border:2px solid transparent;cursor:pointer}
+.dicon .ic{font-size:calc(var(--target)*.55);line-height:1.1}
+.dicon .lb{font-weight:600;font-size:20px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.dicon.sel{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6)}
+.dicon.flash{animation:pulse .6s ease-in-out 2}
+.dkwin{position:absolute;left:28%;top:6%;width:52%;height:66%;background:#fff;border-radius:12px;border:2px solid #44566d;box-shadow:0 14px 34px rgba(0,0,0,.45);overflow:hidden;animation:pop .25s;color:var(--ink)}
+.wtitle{display:flex;justify-content:space-between;align-items:center;background:#e9eef6;padding:4px 4px 4px 14px;font-weight:700;font-size:20px;height:52px}
+.wx{border:0;background:transparent;font-size:24px;width:56px;height:44px;cursor:pointer;border-radius:8px}
+.wx:hover{background:#e81123;color:#fff}
+.wbody{position:relative;height:calc(100% - 52px)}
+.dfile{position:absolute;left:8%;top:10%;width:calc(var(--target)*1.15);text-align:center;cursor:grab;padding:6px;border-radius:10px;border:2px solid transparent;touch-action:none;color:var(--ink)}
+.dfile .ic{font-size:calc(var(--target)*.55);line-height:1.1}
+.dfile .lb{font-size:20px;font-weight:600}
+.dfile.sel{background:rgba(43,111,214,.18);border-color:rgba(43,111,214,.6)}
+.dfile.moving{opacity:.35}
+.dfile.ghostf{position:absolute;z-index:20;pointer-events:none;background:#fff;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:48px;background:rgba(240,244,250,.93);display:flex;align-items:center;justify-content:center;gap:10px}
+.taskbar .tbi{width:28px;height:28px;border-radius:8px}
+.taskbar .clock{position:absolute;right:14px;font-weight:700;font-size:18px}
 
 .pulse{animation:pulse .7s ease-in-out 3}
 .shake{animation:shake .4s}
@@ -114,14 +171,44 @@ button{font:inherit;color:inherit}
 .mouse.double .btnL{animation:blink 1.6s infinite}
 .mouse.move,.mouse.drag{animation:wiggle 1.6s ease-in-out infinite}
 
-#toast{position:fixed;left:50%;top:150px;transform:translate(-50%,-20px);max-width:min(92vw,780px);background:var(--ink);color:#fff;padding:14px 26px;border-radius:16px;font-size:24px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;text-align:center}
+/* Démonstration animée */
+#demo{position:fixed;inset:0;background:rgba(18,38,63,.84);display:grid;place-items:center;z-index:45;overflow:auto}
+.democard{background:#fff;border-radius:26px;padding:20px 28px 24px;text-align:center;max-width:740px;margin:14px;border:6px solid var(--teal)}
+.democard .tag{font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;font-size:15px}
+.democard h2{margin:0 0 12px;font-size:34px}
+.democard p{font-size:24px;font-weight:600;margin:14px 0 16px}
+.democard .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.demobox{position:relative;width:min(640px,80vw);aspect-ratio:560/300;margin:0 auto;border:4px solid var(--ink);border-radius:20px;overflow:hidden;background:#fffdf8 radial-gradient(circle,#eadfca 2px,transparent 2.5px) 0 0/30px 30px}
+.so{position:absolute;transform:translate(-50%,-50%)}
+.sdot{width:15%;aspect-ratio:1;border-radius:50%;border:4px solid rgba(0,0,0,.18);transition:left .3s,top .3s}
+.sfold{text-align:center}.sfold .fi{font-size:64px;line-height:1.1}.sfold .fl{font-size:16px;font-weight:700;padding:0 8px;border-radius:5px}
+.sfold.sel .fl{background:var(--blue);color:#fff}
+.sball{width:13%;aspect-ratio:1;border-radius:50%;background:var(--orange);color:#fff;font-size:34px;display:grid;place-items:center;border:3px solid rgba(0,0,0,.18)}
+.sball.dplaced{transform:translate(-50%,-50%) scale(.62)}
+.sbask{width:26%;height:34%;border:5px dashed var(--orange);border-radius:16px;display:grid;place-items:center;font-size:40px;color:var(--orange);background:#fff}
+.dmenu{position:absolute;background:#fff;border:1px solid #8a97a8;border-radius:8px;padding:4px;font-size:16px;box-shadow:0 6px 16px rgba(0,0,0,.25);text-align:left;min-width:120px;z-index:3}
+.dmenu div{padding:4px 10px;border-radius:5px}.dmenu div:first-child{background:#dce9fd}
+.dsvg{position:absolute;inset:0;width:100%;height:100%}
+.ddot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--teal);transform:translate(-50%,-50%)}
+.ghost{position:absolute;left:8%;top:88%;width:44px;pointer-events:none;z-index:5;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.35))}
+.demomouse{position:absolute;right:10px;bottom:8px;z-index:3}
+.dring{position:absolute;width:30px;height:30px;border:4px solid var(--orange);border-radius:50%;animation:dring .6s ease-out forwards;z-index:4}
+.dfloat{position:absolute;font-weight:800;font-size:34px;color:var(--green);text-shadow:0 2px 0 #fff;animation:dfloat .9s ease-out forwards;z-index:6}
+.dflash{animation:dflash .6s ease-in-out}
+@keyframes dring{from{transform:translate(-50%,-50%) scale(.3);opacity:1}to{transform:translate(-50%,-50%) scale(2.2);opacity:0}}
+@keyframes dfloat{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-50px)}}
+@keyframes dflash{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.25)}}
+
+#toast{position:fixed;left:50%;top:150px;transform:translate(-50%,-20px);max-width:min(92vw,780px);background:var(--ink);color:#fff;padding:14px 26px;border-radius:16px;font-size:24px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:60;text-align:center}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #win{position:fixed;inset:0;background:rgba(18,38,63,.8);display:grid;place-items:center;z-index:40;overflow:hidden}
-.wincard{position:relative;z-index:2;background:#fff;border-radius:28px;padding:34px 40px;text-align:center;max-width:640px;margin:16px;border:6px solid var(--yellow)}
+.wincard{position:relative;z-index:2;background:#fff;border-radius:28px;padding:34px 40px;text-align:center;max-width:660px;margin:16px;border:6px solid var(--yellow)}
 .wincard h2{font-size:56px;margin:0 0 6px}
-.wincard p{font-size:26px;margin:0 0 22px}
+.wincard p{font-size:26px;margin:0 0 10px}
+.wincard .stats{font-size:21px;color:var(--muted);margin-bottom:20px}
 .wincard .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .conf{position:absolute;top:-30px;width:12px;height:18px;animation:fall linear forwards;z-index:1}
+@media print{body{background:#fff}#home,#play,#demo,#win,#toast,.noprint{display:none!important}#bilan{display:block!important;max-width:none;padding:0}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -134,15 +221,18 @@ button{font:inherit;color:inherit}
     <div id="heroMouse"></div>
     <div>
       <h1>Ma souris et moi</h1>
-      <p>6 petits jeux pour apprivoiser la souris, à votre rythme. Pas de chronomètre, pas d’erreur possible : on essaie, on recommence !</p>
+      <p>8 petites activités pour apprivoiser la souris, à votre rythme. Pas de chronomètre, pas d’erreur possible : on essaie, on recommence !</p>
     </div>
   </header>
 
   <section class="settings" aria-label="Réglages">
+    <span class="lbl">Prénom :</span>
+    <input class="input" id="pname" type="text" maxlength="30" placeholder="(facultatif)" autocomplete="off">
     <span class="lbl">Taille des cibles :</span>
     <span class="seg" role="group" aria-label="Taille des cibles">
+      <button data-size-btn="A" aria-pressed="true" title="La taille s’adapte toute seule à votre aisance">Auto</button>
       <button data-size-btn="L" aria-pressed="false">Grande</button>
-      <button data-size-btn="M" aria-pressed="true">Moyenne</button>
+      <button data-size-btn="M" aria-pressed="false">Moyenne</button>
       <button data-size-btn="S" aria-pressed="false">Petite</button>
     </span>
     <span class="lbl">Sons :</span>
@@ -150,43 +240,73 @@ button{font:inherit;color:inherit}
       <button data-sound-btn="on" aria-pressed="true">Oui</button>
       <button data-sound-btn="off" aria-pressed="false">Non</button>
     </span>
-    <button class="btn" id="resetDone" title="Efface les ★ (utile quand un nouveau participant s’installe)">Effacer les ★</button>
+    <span class="lbl" id="voiceLbl">Lire les consignes à voix haute :</span>
+    <span class="seg" role="group" aria-label="Lecture à voix haute" id="voiceSeg">
+      <button data-voice-btn="on" aria-pressed="false">Oui</button>
+      <button data-voice-btn="off" aria-pressed="true">Non</button>
+    </span>
+    <button class="btn" id="goBilan">📊 Mon bilan</button>
+    <button class="btn" id="newPart" title="Efface les ★, le bilan et le niveau de difficulté">👤 Nouveau participant</button>
   </section>
 
-  <section class="cards" id="cards" aria-label="Les 6 exercices"></section>
+  <section class="cards" id="cards" aria-label="Les 8 activités"></section>
 
   <details class="coach">
     <summary>Conseils pour l’animateur</summary>
-    <h3>Objectifs pédagogiques (progression de la difficulté)</h3>
+    <h3>Parcours et objectifs pédagogiques</h3>
     <ul>
-      <li><b>1. Le rond à effleurer</b> : prendre le contrôle du pointeur, sans aucun clic – la flèche suit le mouvement de la main. Le point est validé dès que la flèche touche le rond.</li>
-      <li><b>2. Le rond qui bouge</b> : repérer une cible, viser, cliquer avec le bouton gauche.</li>
-      <li><b>3. Le dossier</b> : réussir un double-clic (deux clics rapides sans bouger la main) – le geste pour « ouvrir » sous Windows.</li>
-      <li><b>4. Le bouton droit</b> : distinguer gauche et droite, faire apparaître le menu contextuel.</li>
-      <li><b>5. Les paniers</b> : glisser-déposer, c’est-à-dire garder le bouton enfoncé pendant le déplacement.</li>
-      <li><b>6. Le chemin</b> : contrôler finement le pointeur, sans cliquer, avec une trajectoire guidée.</li>
+      <li><b>1. Bien installer sa souris</b> : posture de la main, rôle des deux boutons, soulever et reposer la souris, retrouver la flèche quand on la perd.</li>
+      <li><b>2. Le rond à effleurer</b> : prendre le contrôle du pointeur, sans aucun clic. Le point est validé dès que la flèche touche le rond.</li>
+      <li><b>3. Le rond qui bouge</b> : viser et cliquer avec le bouton gauche.</li>
+      <li><b>4. Le dossier</b> : réussir un double-clic (deux clics rapides sans bouger la main), le geste pour « ouvrir » sous Windows.</li>
+      <li><b>5. Le bouton droit</b> : distinguer gauche et droite, faire apparaître le menu contextuel.</li>
+      <li><b>6. Les paniers</b> : glisser-déposer, c’est-à-dire garder le bouton enfoncé pendant le déplacement.</li>
+      <li><b>7. Le chemin</b> : contrôler finement le pointeur, sans cliquer, sur une trajectoire guidée.</li>
+      <li><b>8. Mon premier bureau</b> : synthèse sur un faux bureau (ouvrir, clic droit puis copier, glisser un fichier, fermer une fenêtre).</li>
+    </ul>
+    <h3>Les aides intégrées</h3>
+    <ul>
+      <li><b>Démonstration animée</b> avant chaque exercice : un pointeur fantôme montre le geste. Le bouton « 👁 Revoir la démo » la relance à tout moment.</li>
+      <li><b>Lecture à voix haute</b> : le bouton « 🔊 Écouter » lit la consigne en français (voix du navigateur). Le réglage de l’accueil la déclenche automatiquement. Selon l’ordinateur, la voix française peut ne pas être installée.</li>
+      <li><b>Taille « Auto »</b> : après 6 réussites d’affilée, les cibles rapetissent un peu ; après 3 essais manqués d’affilée, elles grandissent. Vous pouvez aussi imposer Grande, Moyenne ou Petite.</li>
+      <li><b>Mon bilan</b> : par activité, nombre d’essais manqués, temps et taille des cibles, avec un repère qualitatif (sans note). Il reste dans le navigateur de l’ordinateur utilisé et peut s’imprimer. « Nouveau participant » remet tout à zéro (le prénom est facultatif).</li>
     </ul>
     <h3>Déroulé conseillé</h3>
     <ul>
-      <li>Environ 10 minutes par exercice. Montrez d’abord le geste, puis laissez la personne essayer seule ; intervenez le moins possible.</li>
+      <li>Environ 10 minutes par activité. Laissez regarder la démo, puis laissez la personne essayer seule ; intervenez le moins possible.</li>
       <li>Verbalisez la posture : main posée sur la souris, index sur le bouton gauche, majeur sur le bouton droit, on déplace tout le bras doucement.</li>
-      <li>Les messages d’aide sont toujours bienveillants et apparaissent seulement après quelques essais manqués. Il n’y a ni chrono, ni perte de points.</li>
-      <li>Commencez en « Grande » taille de cibles, puis passez à « Moyenne » et « Petite » quand l’aisance augmente. Le bouton « Taille » est aussi disponible dans chaque exercice.</li>
+      <li>Les messages d’aide sont toujours bienveillants et n’apparaissent qu’après quelques essais manqués. Il n’y a ni chrono, ni perte de points.</li>
+      <li>Reprenez un court échauffement (activités 2 et 3) au début de chaque séance : répéter un peu et souvent fixe mieux les gestes qu’une longue séance unique.</li>
     </ul>
     <h3>Réglages utiles sous Windows 11</h3>
     <ul>
       <li><b>Plein écran du navigateur</b> : touche F11.</li>
       <li><b>Inverser les boutons</b> (gaucher) : Paramètres › Bluetooth et appareils › Souris › Bouton principal de la souris.</li>
       <li><b>Vitesse du double-clic</b> : Paramètres › Bluetooth et appareils › Souris › Paramètres supplémentaires de la souris.</li>
-      <li><b>Agrandir le pointeur</b> : Paramètres › Accessibilité › Pointeur de la souris et toucher.</li>
+      <li><b>Repérer la flèche</b> : dans ces mêmes « Paramètres supplémentaires de la souris », onglet Options de pointeur, cochez « Afficher l’emplacement du pointeur lorsque j’appuie sur la touche CTRL ». Pour agrandir la flèche : Paramètres › Accessibilité › Pointeur de la souris et toucher.</li>
       <li><b>Pavé tactile d’un portable</b> : le clic droit se fait en touchant avec deux doigts (ou dans le coin inférieur droit).</li>
     </ul>
     <h3>Pour aller plus loin</h3>
     <ul>
-      <li>Après ces 5 exercices : molette de défilement, sélection de texte, ouvrir et fermer une fenêtre, utiliser un menu.</li>
+      <li>Après ces 8 activités : molette de défilement, sélection de texte, cases à cocher et menus déroulants, déplacement d’une vraie fenêtre.</li>
     </ul>
   </details>
-  <p class="foot">Site HTML5 d’un seul fichier – fonctionne sans connexion Internet.</p>
+  <p class="foot">Site HTML5 d’un seul fichier – fonctionne sans connexion Internet. Aucune donnée n’est envoyée : tout reste dans ce navigateur.</p>
+</main>
+
+<main id="bilan" hidden>
+  <h1 id="bilanTitle">Bilan</h1>
+  <div class="note" id="bilanDate"></div>
+  <p id="bilanSummary" style="font-size:24px;font-weight:700"></p>
+  <table>
+    <thead><tr><th>Activité</th><th>Réussie</th><th>Dernière fois</th><th>Meilleur résultat</th><th>Repère</th></tr></thead>
+    <tbody id="bilanRows"></tbody>
+  </table>
+  <p class="note">Un « essai manqué » est un clic à côté, un mauvais panier, une sortie du chemin… Ce n’est pas une note : c’est un repère pour savoir sur quoi revenir. Ce bilan est enregistré uniquement sur cet ordinateur.</p>
+  <div class="row noprint">
+    <button class="btn primary" id="bilanBack">← Retour aux activités</button>
+    <button class="btn" id="bilanPrint">🖨 Imprimer</button>
+  </div>
 </main>
 
 <section id="play" hidden>
@@ -194,21 +314,41 @@ button{font:inherit;color:inherit}
     <button class="btn" id="back">← Accueil</button>
     <div class="gtitle" id="gtitle"></div>
     <div class="prog"><span class="progtxt" id="progtxt">0 / 0</span><div class="progbar"><i id="progfill"></i></div></div>
-    <button class="btn" id="sizeCycle">Taille</button>
-    <button class="btn" id="soundCycle">Son</button>
-    <button class="btn" id="restart">↻ Recommencer</button>
+    <button class="btn small" id="sizeCycle">Taille</button>
+    <button class="btn small" id="soundCycle">Son</button>
+    <button class="btn small" id="restart">↻ Recommencer</button>
   </div>
-  <div class="consigne"><div id="consigneIcon"></div><p id="consigneText"></p></div>
+  <div class="consigne">
+    <div id="consigneIcon"></div><p id="consigneText"></p>
+    <div class="acts">
+      <button class="btn small" id="listen">🔊 Écouter</button>
+      <button class="btn small" id="showDemo">👁 Revoir la démo</button>
+    </div>
+  </div>
   <div id="stage"></div>
 </section>
+
+<div id="demo" hidden>
+  <div class="democard">
+    <div class="tag" id="demoTag"></div>
+    <h2 id="demoTitle"></h2>
+    <div class="demobox" id="demoBox"></div>
+    <p id="demoText"></p>
+    <div class="row">
+      <button class="btn" id="demoListen">🔊 Écouter</button>
+      <button class="btn primary" id="demoGo">▶ Je commence</button>
+    </div>
+  </div>
+</div>
 
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="win" hidden>
   <div class="wincard">
     <h2>Bravo !</h2>
     <p id="winText"></p>
+    <div class="stats" id="winStats"></div>
     <div class="row">
-      <button class="btn primary" id="winNext">Exercice suivant →</button>
+      <button class="btn primary" id="winNext">Activité suivante →</button>
       <button class="btn" id="winAgain">Rejouer</button>
       <button class="btn" id="winHome">Accueil</button>
     </div>
@@ -221,20 +361,26 @@ button{font:inherit;color:inherit}
 const $=(s,r)=>(r||document).querySelector(s);
 const el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* ---------- Réglages et mémoire locale (facultative) ---------- */
 const store={
-  get(k,d){try{const v=localStorage.getItem('msem:'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
-  set(k,v){try{localStorage.setItem('msem:'+k,JSON.stringify(v));}catch(e){}}
+  get(k,d){try{const v=localStorage.getItem('msem2:'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set(k,v){try{localStorage.setItem('msem2:'+k,JSON.stringify(v));}catch(e){}}
 };
-const SIZE_NAMES={L:'Grande',M:'Moyenne',S:'Petite'};
+const SIZE_NAMES={A:'Auto',L:'Grande',M:'Moyenne',S:'Petite'};
 const SIZE_PX={L:150,M:110,S:80};
-const settings={size:store.get('size','M'),sound:store.get('sound',true)};
-if(!SIZE_PX[settings.size])settings.size='M';
-let done=store.get('done',{});
-const px=()=>SIZE_PX[settings.size];
+const AUTO=[160,135,115,95,78];
+const settings={size:store.get('size','A'),sound:store.get('sound',true),voice:store.get('voice',false),name:store.get('name','')};
+if(!SIZE_NAMES[settings.size])settings.size='A';
+let autoIdx=Math.max(0,Math.min(AUTO.length-1,+store.get('auto',0)||0));
+let done=store.get('done',{}),stats=store.get('stats',{});
+const px=()=>settings.size==='A'?AUTO[autoIdx]:SIZE_PX[settings.size];
+const applyTarget=()=>document.documentElement.style.setProperty('--target',px()+'px');
+const levelLabel=()=>settings.size==='A'?'Auto '+(autoIdx+1)+'/'+AUTO.length:SIZE_NAMES[settings.size];
+const fmt=ms=>{const s=Math.max(1,Math.round(ms/1000));return s<60?s+' s':Math.floor(s/60)+' min '+String(s%60).padStart(2,'0')+' s';};
 
-/* ---------- Sons ---------- */
+/* ---------- Sons et voix ---------- */
 let ac=null;
 function sfx(kind){
   if(!settings.sound)return;
@@ -251,6 +397,17 @@ function sfx(kind){
     });
   }catch(e){}
 }
+const canSpeak=('speechSynthesis' in window)&&(typeof SpeechSynthesisUtterance!=='undefined');
+function speak(text){
+  if(!canSpeak)return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.9;
+    const v=speechSynthesis.getVoices().find(x=>/^fr/i.test(x.lang));if(v)u.voice=v;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function stopSpeak(){try{if(canSpeak)speechSynthesis.cancel();}catch(e){}}
 
 /* ---------- Icône souris ---------- */
 function mouseSVG(mode,w){
@@ -279,33 +436,58 @@ function rel(stage,e){const r=stage.getBoundingClientRect();return{x:e.clientX-r
 function restartAnim(n){n.style.animation='none';void n.offsetWidth;n.style.animation='';}
 
 /* ---------- Gestionnaire de jeu ---------- */
-let curIdx=0,timers=[],toastT=null,ctx=null;
+let curIdx=0,timers=[],toastT=null,ctx=null,pendingStart=false,demoOpenedAt=0;
 function clearTimers(){timers.forEach(clearTimeout);timers=[];}
 
 function toast(msg,ms){
-  const t=$('#toast');t.textContent=msg;t.classList.add('show');
+  const t=$('#toast');t.textContent=msg;
+  const stg=$('#stage');
+  t.style.top=(!$('#play').hidden&&stg?Math.round(stg.getBoundingClientRect().top+12):150)+'px';
+  t.classList.add('show');
   clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),ms||4500);
 }
 function updateProg(c){
   $('#progtxt').textContent=c.score+' / '+c.goal;
   $('#progfill').style.width=(100*c.score/c.goal)+'%';
 }
+function updateSizeBtn(){$('#sizeCycle').textContent='Taille : '+levelLabel();}
+
+function adapt(delta,live){
+  if(settings.size!=='A')return;
+  const n=Math.max(0,Math.min(AUTO.length-1,autoIdx+delta));
+  if(n===autoIdx)return;
+  autoIdx=n;store.set('auto',autoIdx);
+  toast(delta>0?'Vous progressez : les cibles rapetissent un peu.':'On agrandit un peu les cibles pour vous aider.',3200);
+  if(live)applyTarget();
+  updateSizeBtn();
+}
+
 function makeCtx(stage,g){
-  const c={stage,game:g,goal:g.goal,score:0,misses:0,finished:false};
+  const c={stage,game:g,goal:g.goal,score:0,misses:0,finished:false,streak:0,failRun:0,
+    stats:{fails:0,t0:Date.now(),paused:0}};
   c.later=(fn,ms)=>{const id=setTimeout(fn,ms);timers.push(id);return id;};
   c.hint=(m,ms)=>{toast(m,ms);sfx('hint');};
+  c.setConsigne=t=>{$('#consigneText').textContent=t;};
+  c.setIcon=m=>{$('#consigneIcon').innerHTML=mouseSVG(m,46);};
   c.float=(x,y,txt)=>{const f=el('div','float');f.textContent=txt;f.style.left=(x-14)+'px';f.style.top=(y-30)+'px';stage.append(f);c.later(()=>f.remove(),950);};
   c.ripple=e=>{const p=rel(stage,e),r=el('div','ripple');r.style.left=p.x+'px';r.style.top=p.y+'px';stage.append(r);c.later(()=>r.remove(),650);};
+  c.fail=()=>{
+    if(c.finished)return;
+    c.stats.fails++;c.streak=0;
+    if(!g.noadapt&&++c.failRun>=3){c.failRun=0;adapt(-1,g.live);}
+  };
   c.point=e=>{
     if(c.finished)return false;
-    c.misses=0;c.score++;updateProg(c);sfx('ok');
-    if(e){const p=rel(stage,e);c.float(p.x,p.y,'+1');}
+    c.misses=0;c.failRun=0;c.score++;updateProg(c);sfx('ok');
+    if(e&&e.clientX!==undefined){const p=rel(stage,e);c.float(p.x,p.y,'+1');}
+    if(!g.noadapt&&++c.streak>=6){c.streak=0;adapt(+1,g.live);}
     if(c.score>=c.goal){c.finished=true;c.later(()=>win(c),700);}
     return true;
   };
   c.miss=(target,msg,e)=>{
     if(c.finished)return;
     if(e)c.ripple(e);
+    c.fail();
     if(++c.misses>=3){
       c.misses=0;c.hint(msg||'Pas de souci ! La cible est juste là.');
       target.classList.add('pulse');c.later(()=>target.classList.remove('pulse'),2200);
@@ -314,8 +496,10 @@ function makeCtx(stage,g){
   return c;
 }
 function startGame(){
-  clearTimers();$('#toast').classList.remove('show');$('#win').hidden=true;
+  clearTimers();stopSpeak();$('#toast').classList.remove('show');$('#win').hidden=true;
   const g=GAMES[curIdx];
+  applyTarget();updateSizeBtn();
+  $('#consigneText').textContent=g.consigne;$('#consigneIcon').innerHTML=mouseSVG(g.icon,46);
   const stage=document.createElement('div');stage.id='stage';
   $('#stage').replaceWith(stage);
   ctx=makeCtx(stage,g);updateProg(ctx);
@@ -323,44 +507,190 @@ function startGame(){
 }
 function openGame(i){
   curIdx=i;const g=GAMES[i];
-  $('#home').hidden=true;$('#play').hidden=false;
+  $('#home').hidden=true;$('#bilan').hidden=true;$('#play').hidden=false;
   $('#gtitle').textContent=(i+1)+'. '+g.title;
-  $('#consigneIcon').innerHTML=mouseSVG(g.icon,46);
-  $('#consigneText').textContent=g.consigne;
+  $('#showDemo').hidden=!g.demo;$('#listen').hidden=!canSpeak;
   try{history.replaceState(null,'','#'+(i+1));}catch(e){}
-  startGame();
+  if(g.demo){
+    clearTimers();ctx=null;pendingStart=true;
+    const blank=document.createElement('div');blank.id='stage';$('#stage').replaceWith(blank);
+    $('#consigneText').textContent=g.consigne;$('#consigneIcon').innerHTML=mouseSVG(g.icon,46);
+    $('#progtxt').textContent='0 / '+g.goal;$('#progfill').style.width='0%';
+    applyTarget();updateSizeBtn();
+    showDemo(g,true);
+  }else{
+    startGame();
+    if(settings.voice)speak(g.consigne);
+  }
 }
 function goHome(){
-  clearTimers();$('#toast').classList.remove('show');$('#win').hidden=true;
-  $('#play').hidden=true;$('#home').hidden=false;
+  clearTimers();stopSpeak();stopDemo();pendingStart=false;
+  $('#toast').classList.remove('show');$('#win').hidden=true;$('#demo').hidden=true;
+  $('#play').hidden=true;$('#bilan').hidden=true;$('#home').hidden=false;
   try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
   window.scrollTo(0,0);
 }
+
+/* ---------- Démonstration animée ---------- */
+let demoRun=0;
+const GHOST='<svg viewBox="0 0 32 40" width="44" height="54"><path d="M3 2v28l8-7 6 13 5-2.5-6-12.5h11z" fill="#fff" stroke="#12263f" stroke-width="2.5" stroke-linejoin="round"/></svg>';
+function stopDemo(){demoRun++;}
+function startDemo(g){
+  const id=++demoRun,box=$('#demoBox');
+  const api={pos:{x:8,y:88}};
+  api.sleep=ms=>new Promise((res,rej)=>setTimeout(()=>id===demoRun?res():rej('stop'),ms));
+  api.q=s=>box.querySelector(s);
+  api.move=async(x,y,ms)=>{
+    const gh=api.q('.ghost');
+    gh.style.transition=ms?'left '+ms+'ms ease-in-out, top '+ms+'ms ease-in-out':'none';
+    gh.style.left=x+'%';gh.style.top=y+'%';api.pos={x,y};
+    if(ms)await api.sleep(ms+60);
+  };
+  api.moveWith=async(sel,x,y,ms)=>{
+    const gh=api.q('.ghost'),n=api.q(sel);
+    gh.style.transition='left '+ms+'ms ease-in-out, top '+ms+'ms ease-in-out';
+    n.style.transition='left '+ms+'ms ease-in-out, top '+ms+'ms ease-in-out, transform .4s';
+    gh.style.left=x+'%';gh.style.top=y+'%';n.style.left=x+'%';n.style.top=y+'%';api.pos={x,y};
+    await api.sleep(ms+60);
+  };
+  api.ring=()=>{const r=el('div','dring');r.style.left=api.pos.x+'%';r.style.top=api.pos.y+'%';box.append(r);setTimeout(()=>r.remove(),700);};
+  api.press=(b,on)=>{const n=api.q('.demomouse .btn'+b);if(n)n.classList.toggle('on',!!on);};
+  api.flash=sel=>{const n=api.q(sel);if(!n)return;n.classList.remove('dflash');void n.offsetWidth;n.classList.add('dflash');};
+  api.float=(x,y,t)=>{const f=el('div','dfloat');f.textContent=t;f.style.left=x+'%';f.style.top=y+'%';box.append(f);setTimeout(()=>f.remove(),950);};
+  api.dot=(x,y)=>{const d=el('div','ddot');d.style.left=x+'%';d.style.top=y+'%';box.append(d);};
+  (async()=>{
+    try{
+      while(id===demoRun){
+        box.innerHTML=g.demo.scene+'<div class="ghost">'+GHOST+'</div><div class="demomouse">'+mouseSVG('none',58)+'</div>';
+        api.pos={x:8,y:88};
+        await api.sleep(300);
+        await g.demo.play(api);
+        await api.sleep(1500);
+      }
+    }catch(e){}
+  })();
+}
+function showDemo(g,initial){
+  $('#demoTag').textContent=g.skill;$('#demoTitle').textContent=g.title;$('#demoText').textContent=g.consigne;
+  $('#demoGo').textContent=initial?'▶ Je commence':'▶ Continuer';
+  $('#demoListen').hidden=!canSpeak;
+  $('#demo').hidden=false;demoOpenedAt=Date.now();
+  startDemo(g);
+  if(settings.voice)speak(g.consigne);
+}
+
+/* ---------- Fin d'une activité ---------- */
 function win(c){
-  done[c.game.id]=true;store.set('done',done);renderHome();
+  const g=c.game,ms=Date.now()-c.stats.t0-c.stats.paused,fails=c.stats.fails;
+  done[g.id]=true;store.set('done',done);
+  const s=stats[g.id]||{runs:0};
+  s.runs++;s.last={fails,ms,lvl:levelLabel(),date:Date.now()};
+  if(!s.best||fails<s.best.fails||(fails===s.best.fails&&ms<s.best.ms))s.best={fails,ms};
+  stats[g.id]=s;store.set('stats',stats);
+  renderHome();
   sfx('win');
-  $('#winText').textContent='Vous avez réussi l’exercice « '+c.game.title+' ».';
+  $('#winText').textContent='Vous avez réussi l’activité « '+g.title+' ».';
+  $('#winStats').textContent='Essais manqués : '+fails+'  ·  Temps : '+fmt(ms)+'  ·  Cibles : '+levelLabel();
   $('#winNext').hidden=curIdx>=GAMES.length-1;
   const w=$('#win');w.hidden=false;
   w.querySelectorAll('.conf').forEach(n=>n.remove());
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
     const cols=['#e8590c','#0e8f8f','#2b6fd6','#d6336c','#7a4fd1','#f5b800','#1f8a4c'];
     for(let i=0;i<70;i++){
-      const s=el('i','conf');s.style.left=Math.random()*100+'%';s.style.background=cols[i%cols.length];
-      s.style.animationDuration=(2.2+Math.random()*2)+'s';s.style.animationDelay=(Math.random()*1.2)+'s';
-      w.append(s);
+      const s2=el('i','conf');s2.style.left=Math.random()*100+'%';s2.style.background=cols[i%cols.length];
+      s2.style.animationDuration=(2.2+Math.random()*2)+'s';s2.style.animationDelay=(Math.random()*1.2)+'s';
+      w.append(s2);
     }
   }
   $('#winNext').hidden?$('#winAgain').focus():$('#winNext').focus();
 }
 
-/* ---------- Les 5 exercices ---------- */
+/* ---------- Illustrations de l'échauffement ---------- */
+const SKIN='#f3c9a5',SKINS='#b9825a';
+const MOUSE_PATHS='<path d="M40 4C20 4 8 18 8 38v32c0 24 14 36 32 36s32-12 32-36V38C72 18 60 4 40 4z" fill="#fff" stroke="#12263f" stroke-width="2"/><path d="M9 52h62M40 7v45" stroke="#12263f" stroke-width="1.5" fill="none"/><rect x="35" y="18" width="10" height="20" rx="5" fill="#cfd8e3" stroke="#12263f"/>';
+const ILLUS_HAND='<svg viewBox="0 0 260 340" class="illus" aria-hidden="true"><g transform="translate(34,92) scale(2.2)">'+MOUSE_PATHS+
+ '<rect x="13" y="-34" width="24" height="76" rx="12" fill="'+SKIN+'" fill-opacity=".92" stroke="'+SKINS+'" stroke-width="1.5"/>'+
+ '<rect x="43" y="-34" width="24" height="76" rx="12" fill="'+SKIN+'" fill-opacity=".92" stroke="'+SKINS+'" stroke-width="1.5"/>'+
+ '<ellipse cx="40" cy="78" rx="31" ry="27" fill="'+SKIN+'" stroke="'+SKINS+'" stroke-width="1.5"/></g>'+
+ '<text x="89" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">index</text>'+
+ '<text x="155" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">majeur</text>'+
+ '<text x="122" y="268" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">paume</text></svg>';
+const ILLUS_LIFT='<svg viewBox="0 0 320 240" class="illus" aria-hidden="true"><rect x="14" y="150" width="292" height="80" rx="16" fill="#4a5d75"/>'+
+ '<text x="160" y="196" text-anchor="middle" fill="#fff" font-size="20" font-weight="700">tapis ou table</text>'+
+ '<g class="lift-mouse"><g transform="translate(0,64) scale(.8)">'+MOUSE_PATHS+'</g></g></svg>';
+
+/* ---------- Les 8 activités ---------- */
 const GAMES=[
 
-/* 0 – Survol (sans clic) */
-{id:'survol',title:'Le rond à effleurer',skill:'Déplacer la souris',icon:'move',goal:10,
+/* 1 – Échauffement : posture, boutons, soulever, retrouver la flèche */
+{id:'posture',title:'Bien installer sa souris',skill:'Posture et boutons',icon:'none',goal:4,noadapt:true,
+ desc:'Tenir la souris, les 2 boutons, la soulever et la reposer, retrouver la flèche.',
+ consigne:'Suivez les 4 étapes pour bien prendre votre souris en main.',
+ start(c){
+  const st=c.stage;st.classList.add('guided');
+  const okd=[false,false,false,false];
+  let step=0,L=false,R=false,flips=[],lastX=null,lastDir=0,halo=null;
+  const STEPS=[
+   {t:'1. Posez la main',p:'Posez la paume sur la souris. L’index (le doigt qui montre) repose sur le bouton gauche. Le majeur (le grand doigt) repose sur le bouton droit. Le poignet reste posé sur la table.',ill:ILLUS_HAND,btn:'C’est fait ✔'},
+   {t:'2. Les deux boutons',p:'Appuyez une fois avec l’index (bouton gauche), puis une fois avec le majeur (bouton droit).',ill:'<div id="bigMouse">'+mouseSVG('none',210)+'</div>',chips:true},
+   {t:'3. Soulever et reposer',p:'Vous arrivez au bord du tapis ou de la table ? Soulevez la souris, reposez-la plus loin : la flèche, elle, ne bouge pas. Essayez plusieurs fois !',ill:ILLUS_LIFT,btn:'J’ai essayé ✔'},
+   {t:'4. Retrouver la flèche',p:'Vous ne voyez plus la flèche ? Bougez la souris : ce qui bouge se repère tout de suite. Secouez-la doucement de gauche à droite : un cercle orange apparaît pour vous aider.',ill:'<div class="shakehint">↔</div>'}
+  ];
+  function render(){
+    const s=STEPS[step];
+    st.innerHTML='<div class="sdots">'+STEPS.map((_,k)=>'<i class="'+(okd[k]?'done':k===step?'act':'')+'"></i>').join('')+'</div>'+
+     '<div class="pgrid"><div class="pill">'+s.ill+'</div><div class="ptext"><h3>'+s.t+'</h3><p>'+s.p+'</p><div id="pact">'+
+     (s.btn?'<button class="btn primary" id="pbtn">'+s.btn+'</button>':'')+
+     (s.chips?'<div class="chips"><span class="chip" id="chL">Gauche ?</span><span class="chip" id="chR">Droit ?</span></div>':'')+
+     '</div></div></div>';
+    const b=$('#pbtn',st);if(b)b.addEventListener('click',()=>ok(step));
+    L=R=false;flips=[];lastX=null;lastDir=0;
+  }
+  function ok(i){
+    if(okd[i]||c.finished)return;
+    okd[i]=true;
+    const pa=$('#pact',st);if(pa)pa.innerHTML='<div class="okmark">✔ Bien joué !</div>';
+    const dots=st.querySelectorAll('.sdots i');if(dots[i])dots[i].className='done';
+    c.point();
+    if(i<STEPS.length-1)c.later(()=>{step=i+1;render();},1100);
+  }
+  function lightBtn(sel){const n=$('#bigMouse '+sel,st);if(!n)return;n.classList.add('on');c.later(()=>n.classList.remove('on'),300);}
+  st.addEventListener('contextmenu',e=>e.preventDefault());
+  st.addEventListener('mousedown',e=>{
+    if(step!==1||okd[1])return;
+    if(e.button===0){L=true;const n=$('#chL',st);n.textContent='Gauche ✔';n.classList.add('ok');lightBtn('.btnL');}
+    else if(e.button===2){R=true;const n=$('#chR',st);n.textContent='Droit ✔';n.classList.add('ok');lightBtn('.btnR');}
+    if(L&&R)ok(1);
+  });
+  st.addEventListener('pointermove',e=>{
+    if(halo){const p=rel(st,e);halo.style.left=p.x+'px';halo.style.top=p.y+'px';}
+    if(step!==3||okd[3])return;
+    if(lastX!==null){
+      const dx=e.clientX-lastX;
+      if(Math.abs(dx)>=5){const dir=dx>0?1:-1;if(lastDir&&dir!==lastDir)flips.push(Date.now());lastDir=dir;}
+    }
+    lastX=e.clientX;
+    const now=Date.now();flips=flips.filter(t=>now-t<1500);
+    if(flips.length>=5){
+      halo=el('div','halo');const p=rel(st,e);halo.style.left=p.x+'px';halo.style.top=p.y+'px';st.append(halo);
+      c.later(()=>{if(halo){halo.remove();halo=null;}},4000);
+      ok(3);
+    }
+  });
+  render();
+ }},
+
+/* 2 – Survol (sans clic) */
+{id:'survol',title:'Le rond à effleurer',skill:'Déplacer la souris',icon:'move',goal:10,live:true,
  desc:'Posez simplement la flèche sur le rond : pas besoin de cliquer.',
  consigne:'Déplacez la souris pour amener la flèche sur le rond. Ne cliquez pas : il suffit de l’effleurer !',
+ demo:{
+  scene:'<div class="so sdot" id="d1" style="left:68%;top:48%;background:#0e8f8f"></div>',
+  async play(a){
+   await a.move(10,88,0);await a.sleep(500);
+   await a.move(40,70,900);await a.move(66,47,700);
+   a.flash('#d1');a.float(68,36,'+1');await a.sleep(1000);
+  }},
  start(c){
   const colors=['#0e8f8f','#e8590c','#7a4fd1','#d6336c','#2b6fd6'];
   const d=el('div','target dot');c.stage.append(d);
@@ -375,10 +705,19 @@ const GAMES=[
   c.hint('Bougez doucement la souris sur la table : la flèche suit votre main.',6500);
  }},
 
-/* 1 – Clic gauche */
-{id:'clic',title:'Le rond qui bouge',skill:'Clic gauche',icon:'left',goal:10,
+/* 3 – Clic gauche */
+{id:'clic',title:'Le rond qui bouge',skill:'Clic gauche',icon:'left',goal:10,live:true,
  desc:'Cliquez sur le rond. Il change de place à chaque fois.',
  consigne:'Cliquez sur le rond avec le bouton gauche de la souris.',
+ demo:{
+  scene:'<div class="so sdot" id="d1" style="left:30%;top:55%;background:#e8590c"></div>',
+  async play(a){
+   await a.move(10,90,0);await a.sleep(400);
+   await a.move(28,52,1000);
+   a.press('L',1);a.ring();await a.sleep(250);a.press('L',0);
+   a.flash('#d1');a.float(30,42,'+1');await a.sleep(400);
+   a.q('#d1').style.left='72%';a.q('#d1').style.top='32%';await a.sleep(1000);
+  }},
  start(c){
   const colors=['#e8590c','#0e8f8f','#2b6fd6','#d6336c','#7a4fd1'];
   const d=el('div','target dot');c.stage.append(d);
@@ -392,13 +731,22 @@ const GAMES=[
   c.stage.addEventListener('click',e=>{if(e.target===c.stage)c.miss(d,'Pas de souci ! Le rond est juste là.',e);});
  }},
 
-/* 2 – Double-clic */
-{id:'double',title:'Le dossier',skill:'Double-clic',icon:'double',goal:8,
+/* 4 – Double-clic */
+{id:'double',title:'Le dossier',skill:'Double-clic',icon:'double',goal:8,live:true,
  desc:'Ouvrez le dossier avec deux clics très rapides.',
  consigne:'Faites un double-clic : deux clics très rapides sur le dossier, sans bouger la souris.',
+ demo:{
+  scene:'<div class="so sfold" id="d1" style="left:60%;top:50%"><div class="fi">📁</div><div class="fl">Dossier</div></div>',
+  async play(a){
+   await a.move(10,90,0);await a.sleep(400);
+   await a.move(58,50,1100);
+   a.press('L',1);a.ring();await a.sleep(170);a.press('L',0);await a.sleep(110);
+   a.press('L',1);a.ring();a.q('#d1').classList.add('sel');await a.sleep(170);a.press('L',0);
+   a.q('.fi').textContent='📂';a.flash('#d1');a.float(60,30,'+1');await a.sleep(1200);
+  }},
  start(c){
   const f=el('div','target folder');f.innerHTML='<div class="ic">📁</div><div class="lb">Dossier</div>';c.stage.append(f);
-  const ic=f.firstChild;let last=null,singles=0,busy=false;
+  const ic=f.firstChild;let last=null,singles=0,busy=false,gotDbl=false;
   function place(){
     const s=px()*1.45,p=randPos(c.stage,s,last,s*1.8);last=p;
     f.style.left=p.x+'px';f.style.top=p.y+'px';restartAnim(f);
@@ -406,26 +754,38 @@ const GAMES=[
   place();
   f.addEventListener('click',e=>{
     if(busy)return;f.classList.add('sel');
-    if(e.detail===1&&++singles>=3){
-      singles=0;c.hint('Il faut deux clics très rapprochés : clic-clic ! Essayez encore, sans bouger la souris.',6000);
-      f.classList.add('pulse');c.later(()=>f.classList.remove('pulse'),2200);
+    if(e.detail===1){
+      gotDbl=false;
+      c.later(()=>{if(!gotDbl&&!busy)c.fail();},650);
+      if(++singles>=3){
+        singles=0;c.hint('Il faut deux clics très rapprochés : clic-clic ! Essayez encore, sans bouger la souris.',6000);
+        f.classList.add('pulse');c.later(()=>f.classList.remove('pulse'),2200);
+      }
     }
   });
   f.addEventListener('dblclick',e=>{
-    if(busy||c.finished)return;busy=true;singles=0;
+    if(busy||c.finished)return;busy=true;gotDbl=true;singles=0;
     ic.textContent='📂';f.classList.add('sel');c.point(e);
     c.later(()=>{busy=false;ic.textContent='📁';f.classList.remove('sel');if(!c.finished)place();},800);
   });
   c.stage.addEventListener('click',e=>{if(e.target===c.stage){f.classList.remove('sel');c.miss(f,'Pas de souci ! Le dossier est juste là.',e);}});
  }},
 
-/* 3 – Clic droit */
-{id:'droit',title:'Le bouton droit',skill:'Clic droit',icon:'right',goal:8,
+/* 5 – Clic droit */
+{id:'droit',title:'Le bouton droit',skill:'Clic droit',icon:'right',goal:8,live:true,
  desc:'Cliquez sur le rond avec l’autre bouton : celui de droite.',
  consigne:'Cliquez sur le rond bleu avec le bouton droit de la souris. Un petit menu va apparaître !',
+ demo:{
+  scene:'<div class="so sdot" id="d1" style="left:32%;top:50%;background:#2b6fd6"></div><div class="dmenu" id="dm" hidden style="left:36%;top:52%"><div>Ouvrir</div><div>Copier</div><div>Renommer</div><div>Propriétés</div></div>',
+  async play(a){
+   await a.move(10,90,0);await a.sleep(400);
+   await a.move(31,48,1100);
+   a.press('R',1);a.ring();await a.sleep(250);a.press('R',0);
+   a.q('#dm').hidden=false;a.flash('#d1');a.float(32,34,'+1');await a.sleep(1800);
+  }},
  start(c){
-  const d=el('div','target dot rbtn');d.innerHTML=mouseSVG('right',Math.round(px()*.42));c.stage.append(d);
-  let last=null,busy=false,lefts=0;
+  const d=el('div','target dot rbtn');d.innerHTML=mouseSVG('right',60);c.stage.append(d);
+  let last=null,busy=false;
   function place(){
     const s=px(),p=randPos(c.stage,s,last,s*2.5);last=p;
     d.style.left=p.x+'px';d.style.top=p.y+'px';restartAnim(d);
@@ -444,16 +804,26 @@ const GAMES=[
   });
   d.addEventListener('click',()=>{
     if(busy)return;
+    c.fail();
     c.hint('Ça, c’est le bouton gauche. Essayez avec le bouton de droite !',4000);
     d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');
   });
   c.stage.addEventListener('click',e=>{if(e.target===c.stage)c.miss(d,'Pas de souci ! Le rond bleu est juste là.',e);});
  }},
 
-/* 4 – Glisser-déposer */
+/* 6 – Glisser-déposer */
 {id:'glisser',title:'Les paniers',skill:'Glisser-déposer',icon:'drag',goal:6,
  desc:'Faites glisser chaque boule dans le panier qui lui ressemble.',
  consigne:'Appuyez sur une boule, gardez le bouton enfoncé, amenez-la dans le bon panier, puis relâchez.',
+ demo:{
+  scene:'<div class="so sball" id="d1" style="left:20%;top:42%">★</div><div class="so sbask" id="d2" style="left:74%;top:70%">★</div>',
+  async play(a){
+   await a.move(10,90,0);await a.sleep(400);
+   await a.move(20,44,1000);
+   a.press('L',1);await a.sleep(300);
+   await a.moveWith('#d1',74,70,1500);
+   a.press('L',0);a.q('#d1').classList.add('dplaced');a.flash('#d2');a.float(74,46,'+1');await a.sleep(1400);
+  }},
  start(c){
   const stage=c.stage;
   const GROUPS=[{col:'#e8590c',sym:'★'},{col:'#0e8f8f',sym:'♥'},{col:'#7a4fd1',sym:'◆'}];
@@ -499,10 +869,11 @@ const GAMES=[
         u.querySelector('small').textContent=u.count+' / 2';
         b.classList.add('placed');
         b.style.left=(br.left-sr.left-stage.clientLeft+br.width/2-bs/2+(k2?1:-1)*bs*.28)+'px';
-        b.style.top=(br.top-sr.top-stage.clientTop+br.height/2-bs/2+ (bs*.1))+'px';
+        b.style.top=(br.top-sr.top-stage.clientTop+br.height/2-bs/2+bs*.1)+'px';
         c.point(e);
       }else{
         b.style.left=x+'px';b.style.top=y+'px';
+        c.fail();
         c.hint('Pas ce panier-là. Regardez le dessin : '+GROUPS[gi].sym+' va avec '+GROUPS[gi].sym+'.',4500);
       }
     };
@@ -511,10 +882,21 @@ const GAMES=[
   c.hint('Astuce : le bouton gauche reste enfoncé pendant tout le déplacement.',6500);
  }},
 
-/* 5 – Suivre un chemin */
+/* 7 – Suivre un chemin */
 {id:'chemin',title:'Le chemin',skill:'Déplacer sans cliquer',icon:'move',goal:3,
  desc:'Suivez le chemin avec la flèche, du rond vert jusqu’à l’arrivée.',
  consigne:'Posez la flèche sur le rond vert « Départ », puis suivez le chemin jusqu’à l’arrivée. Pas besoin de cliquer !',
+ demo:{
+  scene:'<svg class="dsvg" viewBox="0 0 560 300"><path id="dp" d="M 70 230 C 170 230 170 80 280 80 S 400 220 490 90" fill="none" stroke="#e6d6b8" stroke-width="52" stroke-linecap="round"/><circle cx="70" cy="230" r="30" fill="#1f8a4c"/><circle cx="490" cy="90" r="30" fill="#d6336c"/></svg>',
+  async play(a){
+   const path=a.q('#dp'),L=path.getTotalLength();
+   await a.move(70/5.6,230/3,0);await a.sleep(600);
+   for(let k=0;k<=14;k++){
+    const p=path.getPointAtLength(L*k/14);
+    await a.move(p.x/5.6,p.y/3,k?300:500);a.dot(p.x/5.6,p.y/3);
+   }
+   a.float(87,18,'+1');await a.sleep(1000);
+  }},
  start(c){
   const NS='http://www.w3.org/2000/svg',stage=c.stage;
   const COURSES=[
@@ -522,14 +904,14 @@ const GAMES=[
     'M 110 300 C 260 80 400 80 500 300 S 740 520 890 300',
     'M 110 100 H 760 C 930 100 930 300 760 300 H 240 C 70 300 70 500 240 500 H 890'
   ];
-  const WIDTH={L:104,M:80,S:58}[settings.size],HALF=WIDTH/2,STEP=4;
-  const mk=(tag,attrs,parent)=>{const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);(parent||svg).append(n);return n;};
+  const WIDTH=Math.round(px()*0.72),HALF=WIDTH/2,STEP=4;
   const svg=document.createElementNS(NS,'svg');
+  const mk=(tag,attrs)=>{const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);svg.append(n);return n;};
   svg.setAttribute('viewBox','0 0 1000 600');svg.setAttribute('preserveAspectRatio','xMidYMid meet');
   svg.style.cssText='position:absolute;left:0;top:0;width:100%;height:100%';
   stage.append(svg);
   const road=mk('path',{class:'road','stroke-width':WIDTH});
-  const guide=mk('path',{class:'guide'});
+  mk('path',{class:'guide'});
   const prog=mk('path',{class:'prog-path','stroke-width':WIDTH-14});
   const sCirc=mk('circle',{class:'mk-start',r:HALF+4});
   const sTxt=mk('text',{class:'mk-txt'});sTxt.textContent='Départ';
@@ -537,7 +919,8 @@ const GAMES=[
   const eFlag=mk('text',{class:'mk-flag'});eFlag.textContent='🏁';
   const eTxt=mk('text',{class:'mk-txt'});eTxt.textContent='Arrivée';
   const head=mk('circle',{class:'head',r:Math.max(12,WIDTH*.26)});
-  let samples=[],total=0,idx=0,started=false,course=0,locked=false,offSince=0,lastHint=0;
+  const paths=svg.querySelectorAll('.road,.guide,.prog-path');
+  let samples=[],total=0,idx=0,started=false,course=0,locked=false,offSince=0,offCounted=false,lastHint=0;
   function draw(){
     prog.style.display=started?'':'none';
     prog.setAttribute('stroke-dasharray',(idx*STEP)+' '+(total+60));
@@ -545,7 +928,7 @@ const GAMES=[
     if(samples.length){head.setAttribute('cx',samples[idx][0]);head.setAttribute('cy',samples[idx][1]);}
   }
   function load(i){
-    course=i;[road,guide,prog].forEach(p=>p.setAttribute('d',COURSES[i]));
+    course=i;paths.forEach(p=>p.setAttribute('d',COURSES[i]));
     total=road.getTotalLength();samples=[];
     for(let l=0;l<=total;l+=STEP){const p=road.getPointAtLength(l);samples.push([p.x,p.y]);}
     const a=samples[0],b=samples[samples.length-1];
@@ -571,7 +954,7 @@ const GAMES=[
     let best=-1,bd=1e9;
     for(let i=lo;i<=hi;i++){const d=Math.hypot(samples[i][0]-p.x,samples[i][1]-p.y);if(d<bd){bd=d;best=i;}}
     if(bd<=HALF){
-      offSince=0;head.setAttribute('class','head');
+      offSince=0;offCounted=false;head.setAttribute('class','head');
       if(best>idx){idx=best;draw();}
       if(idx>=samples.length-1-10){
         idx=samples.length-1;draw();locked=true;c.point(e);
@@ -581,15 +964,99 @@ const GAMES=[
       head.setAttribute('class','head off');
       const now=Date.now();
       if(!offSince)offSince=now;
+      if(!offCounted&&now-offSince>600){offCounted=true;c.fail();}
       if(now-offSince>1200&&now-lastHint>6000){
         lastHint=now;c.hint('Revenez sur la partie colorée : vous reprenez là où vous vous étiez arrêté.',5000);
       }
     }
   });
+ }},
+
+/* 8 – Synthèse : faux bureau */
+{id:'bureau',title:'Mon premier bureau',skill:'Synthèse : tous les gestes',icon:'double',goal:4,noadapt:true,
+ desc:'Ouvrir, clic droit puis copier, glisser un fichier, fermer : comme sur un vrai ordinateur.',
+ consigne:'Suivez les missions affichées ici, une par une.',
+ start(c){
+  const st=c.stage;st.classList.add('desk');
+  const now=new Date();
+  st.innerHTML=
+   '<div class="dicon" id="icDoc" style="left:3%;top:4%"><div class="ic">📁</div><div class="lb">Documents</div></div>'+
+   '<div class="dicon" id="icPho" style="left:3%;top:36%"><div class="ic">📁</div><div class="lb">Photos</div></div>'+
+   '<div class="dkwin" id="dkwin" hidden><div class="wtitle"><span>📂 Documents</span><button class="wx" id="dkx" aria-label="Fermer">✕</button></div>'+
+   '<div class="wbody"><div class="dfile" id="dkfile"><div class="ic">📄</div><div class="lb">Lettre</div></div></div></div>'+
+   '<div class="taskbar"><i class="tbi" style="background:#2b6fd6"></i><i class="tbi" style="background:#f5b800"></i><i class="tbi" style="background:#1f8a4c"></i><div class="clock">'+
+   String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+'</div></div>';
+  const M=['Mission 1 sur 4 : double-cliquez sur le dossier « Documents ».',
+           'Mission 2 sur 4 : faites un clic droit sur le fichier « Lettre », puis cliquez sur « Copier ».',
+           'Mission 3 sur 4 : faites glisser le fichier « Lettre » sur le dossier « Photos ».',
+           'Mission 4 sur 4 : fermez la fenêtre avec la croix ✕ en haut à droite.'];
+  const ICONS=['double','right','drag','left'];
+  let m=0,menu=null;
+  const icDoc=$('#icDoc',st),icPho=$('#icPho',st),win=$('#dkwin',st),file=$('#dkfile',st);
+  function setM(){c.setConsigne(M[m]);c.setIcon(ICONS[m]);}
+  setM();
+  function closeMenu(){if(menu){menu.remove();menu=null;}}
+  function next(e){c.point(e);if(m<3){m++;setM();}}
+  st.addEventListener('contextmenu',e=>{
+    e.preventDefault();
+    closeMenu();
+    if(m===1&&e.target.closest('#dkfile')){
+      file.classList.add('sel');
+      menu=el('div','ctxmenu live');
+      menu.innerHTML='<div data-a="open">Ouvrir</div><div data-a="copy">Copier</div><div data-a="ren">Renommer</div><div data-a="prop">Propriétés</div>';
+      st.append(menu);
+      const p=rel(st,e);
+      menu.style.left=Math.max(0,Math.min(p.x,st.clientWidth-menu.offsetWidth-6))+'px';
+      menu.style.top=Math.max(0,Math.min(p.y,st.clientHeight-menu.offsetHeight-6))+'px';
+    }else if(m===1){c.fail();c.hint('Le clic droit se fait sur le fichier « Lettre » dans la fenêtre.',4000);}
+  });
+  st.addEventListener('click',e=>{
+    const it=e.target.closest('.ctxmenu div');
+    if(it&&menu){
+      if(it.dataset.a==='copy'){closeMenu();toast('Copié ✔',1800);next(e);}
+      else{c.fail();c.hint('Cherchez le mot « Copier » dans la liste.',3500);}
+      return;
+    }
+    closeMenu();
+    if(e.target.closest('.dicon')){
+      [icDoc,icPho].forEach(n=>n.classList.toggle('sel',n===e.target.closest('.dicon')));
+    }else if(!e.target.closest('#dkfile')){[icDoc,icPho].forEach(n=>n.classList.remove('sel'));file.classList.remove('sel');}
+    if(e.target.closest('#dkx')&&m===3){win.hidden=true;next(e);}
+    else if(e.target.closest('#dkx')){win.hidden=true;}
+  });
+  st.addEventListener('dblclick',e=>{
+    const ic=e.target.closest('.dicon');if(!ic)return;
+    if(ic===icDoc&&m===0){win.hidden=false;icDoc.classList.add('sel');next(e);}
+    else if(ic===icDoc){win.hidden=false;}
+    else{c.fail();c.hint('Ce n’est pas ce dossier-là. Regardez la consigne en haut.',4000);}
+  });
+  let drag=null;
+  file.addEventListener('pointerdown',e=>{
+    if(e.button!==0)return;
+    file.classList.add('sel');
+    if(m!==2){return;}
+    e.preventDefault();file.setPointerCapture(e.pointerId);
+    const g=file.cloneNode(true);g.removeAttribute('id');g.classList.add('ghostf');st.append(g);
+    file.classList.add('moving');drag={g};
+    const p=rel(st,e);g.style.left=(p.x-30)+'px';g.style.top=(p.y-30)+'px';
+  });
+  file.addEventListener('pointermove',e=>{
+    if(!drag)return;const p=rel(st,e);drag.g.style.left=(p.x-30)+'px';drag.g.style.top=(p.y-30)+'px';
+  });
+  const endDrag=e=>{
+    if(!drag)return;
+    drag.g.remove();drag=null;file.classList.remove('moving');
+    const r=icPho.getBoundingClientRect();
+    if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom){
+      file.hidden=true;icPho.classList.add('flash');c.later(()=>icPho.classList.remove('flash'),1300);next(e);
+    }else{c.fail();c.hint('Lâchez le fichier juste sur le dossier « Photos ».',4000);}
+  };
+  file.addEventListener('pointerup',endDrag);file.addEventListener('pointercancel',endDrag);
+  c.hint('Chaque mission change la consigne en haut de l’écran.',5000);
  }}
 ];
 
-/* ---------- Accueil ---------- */
+/* ---------- Accueil, bilan, réglages ---------- */
 function renderHome(){
   $('#cards').innerHTML=GAMES.map((g,i)=>
     '<button class="card" data-i="'+i+'"><span class="num">'+(i+1)+'</span><span class="ico">'+mouseSVG(g.icon,46)+'</span>'+
@@ -597,30 +1064,74 @@ function renderHome(){
     '<span class="badge'+(done[g.id]?' ok':'')+'">'+(done[g.id]?'★ Réussi':'À faire')+'</span></button>').join('');
   $('#cards').querySelectorAll('.card').forEach(b=>b.addEventListener('click',()=>openGame(+b.dataset.i)));
 }
+function repere(s,goal){
+  if(!s||!s.last)return '—';
+  const r=s.last.fails/goal;
+  return r<=.2?'Très régulier':r<=.6?'En progrès':'À reprendre avec l’animateur';
+}
+function renderBilan(){
+  const nm=settings.name.trim();
+  $('#bilanTitle').textContent='Bilan'+(nm?' de '+nm:'');
+  $('#bilanDate').textContent=new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  const nOk=GAMES.filter(g=>done[g.id]).length;
+  $('#bilanSummary').textContent='Activités réussies : '+nOk+' sur '+GAMES.length;
+  $('#bilanRows').innerHTML=GAMES.map((g,i)=>{
+    const s=stats[g.id];
+    const last=s&&s.last?s.last.fails+' essai(s) manqué(s) · '+fmt(s.last.ms)+'<br><small>cibles : '+esc(s.last.lvl)+'</small>':'—';
+    const best=s&&s.best?s.best.fails+' essai(s) manqué(s) · '+fmt(s.best.ms):'—';
+    return '<tr><td><b>'+(i+1)+'. '+g.title+'</b></td><td>'+(s?'✔ '+s.runs+' fois':'—')+'</td><td>'+last+'</td><td>'+best+'</td><td>'+repere(s,g.goal)+'</td></tr>';
+  }).join('');
+}
 function applySettings(){
-  document.documentElement.dataset.size=settings.size;
   document.querySelectorAll('[data-size-btn]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sizeBtn===settings.size)));
   document.querySelectorAll('[data-sound-btn]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.soundBtn==='on')===settings.sound)));
-  $('#sizeCycle').textContent='Taille : '+SIZE_NAMES[settings.size];
+  document.querySelectorAll('[data-voice-btn]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.voiceBtn==='on')===settings.voice)));
+  applyTarget();updateSizeBtn();
   $('#soundCycle').textContent=settings.sound?'🔊 Son':'🔇 Muet';
-  store.set('size',settings.size);store.set('sound',settings.sound);
+  store.set('size',settings.size);store.set('sound',settings.sound);store.set('voice',settings.voice);
 }
 document.querySelectorAll('[data-size-btn]').forEach(b=>b.addEventListener('click',()=>{settings.size=b.dataset.sizeBtn;applySettings();}));
 document.querySelectorAll('[data-sound-btn]').forEach(b=>b.addEventListener('click',()=>{settings.sound=b.dataset.soundBtn==='on';applySettings();sfx('ok');}));
-$('#resetDone').addEventListener('click',()=>{done={};store.set('done',done);renderHome();});
-$('#sizeCycle').addEventListener('click',()=>{settings.size={L:'M',M:'S',S:'L'}[settings.size];applySettings();startGame();});
+document.querySelectorAll('[data-voice-btn]').forEach(b=>b.addEventListener('click',()=>{settings.voice=b.dataset.voiceBtn==='on';applySettings();if(settings.voice)speak('La lecture à voix haute est activée.');}));
+if(!canSpeak){$('#voiceLbl').hidden=true;$('#voiceSeg').hidden=true;$('#demoListen').hidden=true;}
+$('#pname').value=settings.name;
+$('#pname').addEventListener('input',e=>{settings.name=e.target.value;store.set('name',settings.name);});
+$('#goBilan').addEventListener('click',()=>{renderBilan();$('#home').hidden=true;$('#bilan').hidden=false;window.scrollTo(0,0);});
+$('#bilanBack').addEventListener('click',goHome);
+$('#bilanPrint').addEventListener('click',()=>{try{window.print();}catch(e){}});
+let armT=null;
+$('#newPart').addEventListener('click',()=>{
+  const b=$('#newPart');
+  if(!b.dataset.arm){
+    b.dataset.arm='1';b.textContent='Cliquez encore pour confirmer';
+    armT=setTimeout(()=>{delete b.dataset.arm;b.textContent='👤 Nouveau participant';},4000);return;
+  }
+  clearTimeout(armT);delete b.dataset.arm;b.textContent='👤 Nouveau participant';
+  done={};stats={};autoIdx=0;settings.name='';$('#pname').value='';
+  store.set('done',done);store.set('stats',stats);store.set('auto',0);store.set('name','');
+  renderHome();applySettings();toast('Prêt pour un nouveau participant.',2500);
+});
+$('#sizeCycle').addEventListener('click',()=>{settings.size={A:'L',L:'M',M:'S',S:'A'}[settings.size];applySettings();startGame();});
 $('#soundCycle').addEventListener('click',()=>{settings.sound=!settings.sound;applySettings();sfx('ok');});
 $('#restart').addEventListener('click',startGame);
 $('#back').addEventListener('click',goHome);
 $('#winHome').addEventListener('click',goHome);
 $('#winAgain').addEventListener('click',startGame);
 $('#winNext').addEventListener('click',()=>openGame(curIdx+1));
+$('#listen').addEventListener('click',()=>speak($('#consigneText').textContent));
+$('#demoListen').addEventListener('click',()=>speak($('#demoText').textContent));
+$('#showDemo').addEventListener('click',()=>{const g=GAMES[curIdx];if(g.demo)showDemo(g,false);});
+$('#demoGo').addEventListener('click',()=>{
+  stopDemo();stopSpeak();$('#demo').hidden=true;
+  if(pendingStart){pendingStart=false;startGame();if(settings.voice&&false)speak('');}
+  else if(ctx){ctx.stats.paused+=Date.now()-demoOpenedAt;}
+});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#play').hidden)goHome();});
 
 $('#heroMouse').innerHTML=mouseSVG('move',84);
 renderHome();applySettings();
-const m=/^#([1-6])$/.exec(location.hash);
-if(m)openGame(+m[1]-1);
+const hm=/^#([1-8])$/.exec(location.hash);
+if(hm)openGame(+hm[1]-1);
 })();
 </script>
 </body>
