@@ -120,6 +120,9 @@ button{font:inherit;color:inherit}
 .chips{display:flex;gap:12px;flex-wrap:wrap}
 .chip{padding:8px 18px;border:3px solid var(--ink);border-radius:999px;font-weight:800;background:#fff}
 .chip.ok{background:#e1f5e8;border-color:var(--green);color:#116a36}
+.autobar{height:12px;max-width:340px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden}
+.autobar i{display:block;height:100%;width:0;background:var(--teal);animation:autofill linear forwards}
+@keyframes autofill{to{width:100%}}
 .okmark{display:inline-block;padding:10px 20px;border-radius:14px;background:#e1f5e8;border:3px solid var(--green);color:#116a36;font-weight:800;font-size:26px;animation:pop .25s}
 .halo{position:absolute;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;border:8px solid var(--orange);background:rgba(232,89,12,.15);pointer-events:none;animation:haloP 1s ease-in-out infinite;z-index:8}
 .shakehint{font-size:110px;font-weight:800;color:var(--orange);animation:wiggle2 .9s ease-in-out infinite}
@@ -226,8 +229,8 @@ button{font:inherit;color:inherit}
   </header>
 
   <section class="settings" aria-label="Réglages">
-    <span class="lbl">Prénom :</span>
-    <input class="input" id="pname" type="text" maxlength="30" placeholder="(facultatif)" autocomplete="off">
+    <span class="lbl" hidden>Prénom :</span>
+    <input class="input" id="pname" hidden type="text" maxlength="30" placeholder="(facultatif)" autocomplete="off">
     <span class="lbl">Taille des cibles :</span>
     <span class="seg" role="group" aria-label="Taille des cibles">
       <button data-size-btn="A" aria-pressed="true" title="La taille s’adapte toute seule à votre aisance">Auto</button>
@@ -246,7 +249,7 @@ button{font:inherit;color:inherit}
       <button data-voice-btn="off" aria-pressed="true">Non</button>
     </span>
     <button class="btn" id="goBilan">📊 Mon bilan</button>
-    <button class="btn" id="newPart" title="Efface les ★, le bilan et le niveau de difficulté">👤 Nouveau participant</button>
+    <button class="btn" id="newPart" hidden title="Efface les ★, le bilan et le niveau de difficulté">👤 Nouveau participant</button>
   </section>
 
   <section class="cards" id="cards" aria-label="Les 8 activités"></section>
@@ -255,7 +258,7 @@ button{font:inherit;color:inherit}
     <summary>Conseils pour l’animateur</summary>
     <h3>Parcours et objectifs pédagogiques</h3>
     <ul>
-      <li><b>1. Bien installer sa souris</b> : posture de la main, rôle des deux boutons, soulever et reposer la souris, retrouver la flèche quand on la perd.</li>
+      <li><b>1. Bien installer sa souris</b> : posture de la main (paume, index sur le bouton gauche, majeur sur le bouton droit). L’écran reste affiché 20 secondes, sans aucun clic, puis l’activité 2 démarre toute seule. Vous pouvez passer plus vite avec la barre d’espace, la touche Entrée ou la flèche droite.</li>
       <li><b>2. Le rond à effleurer</b> : prendre le contrôle du pointeur, sans aucun clic. Le point est validé dès que la flèche touche le rond.</li>
       <li><b>3. Le rond qui bouge</b> : viser et cliquer avec le bouton gauche.</li>
       <li><b>4. Le dossier</b> : réussir un double-clic (deux clics rapides sans bouger la main), le geste pour « ouvrir » sous Windows.</li>
@@ -269,7 +272,7 @@ button{font:inherit;color:inherit}
       <li><b>Démonstration animée</b> avant chaque exercice : un pointeur fantôme montre le geste. Le bouton « 👁 Revoir la démo » la relance à tout moment.</li>
       <li><b>Lecture à voix haute</b> : le bouton « 🔊 Écouter » lit la consigne en français (voix du navigateur). Le réglage de l’accueil la déclenche automatiquement. Selon l’ordinateur, la voix française peut ne pas être installée.</li>
       <li><b>Taille « Auto »</b> : après 6 réussites d’affilée, les cibles rapetissent un peu ; après 3 essais manqués d’affilée, elles grandissent. Vous pouvez aussi imposer Grande, Moyenne ou Petite.</li>
-      <li><b>Mon bilan</b> : par activité, nombre d’essais manqués, temps et taille des cibles, avec un repère qualitatif (sans note). Il reste dans le navigateur de l’ordinateur utilisé et peut s’imprimer. « Nouveau participant » remet tout à zéro (le prénom est facultatif).</li>
+      <li><b>Mon bilan</b> : par activité, nombre d’essais manqués, temps et taille des cibles, avec un repère qualitatif (sans note). Il reste dans le navigateur de l’ordinateur utilisé et peut s’imprimer.</li>
     </ul>
     <h3>Déroulé conseillé</h3>
     <ul>
@@ -291,7 +294,6 @@ button{font:inherit;color:inherit}
       <li>Après ces 8 activités : molette de défilement, sélection de texte, cases à cocher et menus déroulants, déplacement d’une vraie fenêtre.</li>
     </ul>
   </details>
-  <p class="foot">Site HTML5 d’un seul fichier – fonctionne sans connexion Internet. Aucune donnée n’est envoyée : tout reste dans ce navigateur.</p>
 </main>
 
 <main id="bilan" hidden>
@@ -608,13 +610,13 @@ function win(c){
 /* ---------- Illustrations de l'échauffement ---------- */
 const SKIN='#f3c9a5',SKINS='#b9825a';
 const MOUSE_PATHS='<path d="M40 4C20 4 8 18 8 38v32c0 24 14 36 32 36s32-12 32-36V38C72 18 60 4 40 4z" fill="#fff" stroke="#12263f" stroke-width="2"/><path d="M9 52h62M40 7v45" stroke="#12263f" stroke-width="1.5" fill="none"/><rect x="35" y="18" width="10" height="20" rx="5" fill="#cfd8e3" stroke="#12263f"/>';
-const ILLUS_HAND='<svg viewBox="0 0 260 340" class="illus" aria-hidden="true"><g transform="translate(34,92) scale(2.2)">'+MOUSE_PATHS+
+const ILLUS_HAND='<svg viewBox="0 0 260 372" class="illus" aria-hidden="true"><g transform="translate(34,118) scale(2.2)">'+MOUSE_PATHS+
  '<rect x="13" y="-34" width="24" height="76" rx="12" fill="'+SKIN+'" fill-opacity=".92" stroke="'+SKINS+'" stroke-width="1.5"/>'+
  '<rect x="43" y="-34" width="24" height="76" rx="12" fill="'+SKIN+'" fill-opacity=".92" stroke="'+SKINS+'" stroke-width="1.5"/>'+
  '<ellipse cx="40" cy="78" rx="31" ry="27" fill="'+SKIN+'" stroke="'+SKINS+'" stroke-width="1.5"/></g>'+
- '<text x="89" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">index</text>'+
- '<text x="155" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">majeur</text>'+
- '<text x="122" y="268" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">paume</text></svg>';
+ '<text x="89" y="18" text-anchor="middle" font-size="19" font-weight="800" fill="#12263f">index</text><text x="89" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#44566d">= gauche</text>'+
+ '<text x="167" y="18" text-anchor="middle" font-size="19" font-weight="800" fill="#12263f">majeur</text><text x="167" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#44566d">= droit</text>'+
+ '<text x="122" y="294" text-anchor="middle" font-size="20" font-weight="800" fill="#12263f">paume</text></svg>';
 const ILLUS_LIFT='<svg viewBox="0 0 320 240" class="illus" aria-hidden="true"><rect x="14" y="150" width="292" height="80" rx="16" fill="#4a5d75"/>'+
  '<text x="160" y="196" text-anchor="middle" fill="#fff" font-size="20" font-weight="700">tapis ou table</text>'+
  '<g class="lift-mouse"><g transform="translate(0,64) scale(.8)">'+MOUSE_PATHS+'</g></g></svg>';
@@ -622,62 +624,27 @@ const ILLUS_LIFT='<svg viewBox="0 0 320 240" class="illus" aria-hidden="true"><r
 /* ---------- Les 8 activités ---------- */
 const GAMES=[
 
-/* 1 – Échauffement : posture, boutons, soulever, retrouver la flèche */
-{id:'posture',title:'Bien installer sa souris',skill:'Posture et boutons',icon:'none',goal:4,noadapt:true,
- desc:'Tenir la souris, les 2 boutons, la soulever et la reposer, retrouver la flèche.',
- consigne:'Suivez les 4 étapes pour bien prendre votre souris en main.',
+/* 1 – Posture de la main (une seule étape, passage automatique à la suite) */
+{id:'posture',title:'Bien installer sa souris',skill:'Posture de la main',icon:'none',goal:1,noadapt:true,
+ desc:'Où poser la paume, l’index et le majeur sur la souris.',
+ consigne:'Regardez comment poser la main sur la souris.',
  start(c){
-  const st=c.stage;st.classList.add('guided');
-  const okd=[false,false,false,false];
-  let step=0,L=false,R=false,flips=[],lastX=null,lastDir=0,halo=null;
-  const STEPS=[
-   {t:'1. Posez la main',p:'Posez la paume sur la souris. L’index (le doigt qui montre) repose sur le bouton gauche. Le majeur (le grand doigt) repose sur le bouton droit. Le poignet reste posé sur la table.',ill:ILLUS_HAND,btn:'C’est fait ✔'},
-   {t:'2. Les deux boutons',p:'Appuyez une fois avec l’index (bouton gauche), puis une fois avec le majeur (bouton droit).',ill:'<div id="bigMouse">'+mouseSVG('none',210)+'</div>',chips:true},
-   {t:'3. Soulever et reposer',p:'Vous arrivez au bord du tapis ou de la table ? Soulevez la souris, reposez-la plus loin : la flèche, elle, ne bouge pas. Essayez plusieurs fois !',ill:ILLUS_LIFT,btn:'J’ai essayé ✔'},
-   {t:'4. Retrouver la flèche',p:'Vous ne voyez plus la flèche ? Bougez la souris : ce qui bouge se repère tout de suite. Secouez-la doucement de gauche à droite : un cercle orange apparaît pour vous aider.',ill:'<div class="shakehint">↔</div>'}
-  ];
-  function render(){
-    const s=STEPS[step];
-    st.innerHTML='<div class="sdots">'+STEPS.map((_,k)=>'<i class="'+(okd[k]?'done':k===step?'act':'')+'"></i>').join('')+'</div>'+
-     '<div class="pgrid"><div class="pill">'+s.ill+'</div><div class="ptext"><h3>'+s.t+'</h3><p>'+s.p+'</p><div id="pact">'+
-     (s.btn?'<button class="btn primary" id="pbtn">'+s.btn+'</button>':'')+
-     (s.chips?'<div class="chips"><span class="chip" id="chL">Gauche ?</span><span class="chip" id="chR">Droit ?</span></div>':'')+
-     '</div></div></div>';
-    const b=$('#pbtn',st);if(b)b.addEventListener('click',()=>ok(step));
-    L=R=false;flips=[];lastX=null;lastDir=0;
+  const st=c.stage,MS=20000,idx=curIdx;
+  st.classList.add('guided');
+  st.innerHTML='<div class="pgrid"><div class="pill">'+ILLUS_HAND+'</div><div class="ptext"><h3>Posez la main</h3>'+
+   '<p>Posez la paume de la main sur la souris. L’index (le doigt qui montre) repose sur le bouton gauche. Le majeur (le grand doigt) repose sur le bouton droit. Le poignet reste posé sur la table.</p>'+
+   '<div class="autobar"><i style="animation-duration:'+MS+'ms"></i></div></div></div>';
+  let gone=false;
+  function go(){
+    if(gone||!st.isConnected)return;gone=true;
+    done[c.game.id]=true;store.set('done',done);renderHome();
+    openGame(idx+1);
   }
-  function ok(i){
-    if(okd[i]||c.finished)return;
-    okd[i]=true;
-    const pa=$('#pact',st);if(pa)pa.innerHTML='<div class="okmark">✔ Bien joué !</div>';
-    const dots=st.querySelectorAll('.sdots i');if(dots[i])dots[i].className='done';
-    c.point();
-    if(i<STEPS.length-1)c.later(()=>{step=i+1;render();},1100);
-  }
-  function lightBtn(sel){const n=$('#bigMouse '+sel,st);if(!n)return;n.classList.add('on');c.later(()=>n.classList.remove('on'),300);}
-  st.addEventListener('contextmenu',e=>e.preventDefault());
-  st.addEventListener('mousedown',e=>{
-    if(step!==1||okd[1])return;
-    if(e.button===0){L=true;const n=$('#chL',st);n.textContent='Gauche ✔';n.classList.add('ok');lightBtn('.btnL');}
-    else if(e.button===2){R=true;const n=$('#chR',st);n.textContent='Droit ✔';n.classList.add('ok');lightBtn('.btnR');}
-    if(L&&R)ok(1);
+  c.later(go,MS);
+  document.addEventListener('keydown',e=>{
+    if(!st.isConnected||gone)return;
+    if(e.key===' '||e.key==='Enter'||e.key==='ArrowRight'){e.preventDefault();go();}
   });
-  st.addEventListener('pointermove',e=>{
-    if(halo){const p=rel(st,e);halo.style.left=p.x+'px';halo.style.top=p.y+'px';}
-    if(step!==3||okd[3])return;
-    if(lastX!==null){
-      const dx=e.clientX-lastX;
-      if(Math.abs(dx)>=5){const dir=dx>0?1:-1;if(lastDir&&dir!==lastDir)flips.push(Date.now());lastDir=dir;}
-    }
-    lastX=e.clientX;
-    const now=Date.now();flips=flips.filter(t=>now-t<1500);
-    if(flips.length>=5){
-      halo=el('div','halo');const p=rel(st,e);halo.style.left=p.x+'px';halo.style.top=p.y+'px';st.append(halo);
-      c.later(()=>{if(halo){halo.remove();halo=null;}},4000);
-      ok(3);
-    }
-  });
-  render();
  }},
 
 /* 2 – Survol (sans clic) */
